@@ -35,7 +35,7 @@ class GildedRose
       next unless item.sell_in.negative?
       if item.name != 'Aged Brie'
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-          if item.quality > 0
+          if item.quality.positive?
             if item.name != 'Sulfuras, Hand of Ragnaros'
               item.quality = item.quality - 1
             end
