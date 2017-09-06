@@ -3,8 +3,9 @@
 require 'rspec'
 require 'approvals/rspec'
 
-require_relative '../lib/gilded_rose'
 require_relative '../lib/item'
+require_relative '../lib/gilded_rose'
+require_relative '../lib/gilded_rose_item'
 
 describe GildedRose do
   it 'knows how to update quality for items' do

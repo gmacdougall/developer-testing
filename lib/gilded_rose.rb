@@ -6,7 +6,7 @@ class GildedRose
   attr_reader :items
 
   def initialize(item_attributes)
-    @items = item_attributes.map { |args| Item.new(*args) }
+    @items = item_attributes.map { |args| GildedRoseItem.new(*args) }
   end
 
   def update_quality
@@ -14,9 +14,7 @@ class GildedRose
       if item.name != 'Aged Brie' &&
          item.name != 'Backstage passes to a TAFKAL80ETC concert'
         if item.quality.positive?
-          if item.name != 'Sulfuras, Hand of Ragnaros'
-            item.quality = item.quality - 1
-          end
+          item.quality = item.quality - 1 unless item.legendary?
         end
       elsif item.quality < 50
         item.quality = item.quality + 1
@@ -29,16 +27,12 @@ class GildedRose
           end
         end
       end
-      if item.name != 'Sulfuras, Hand of Ragnaros'
-        item.sell_in = item.sell_in - 1
-      end
+      item.sell_in = item.sell_in - 1 unless item.legendary?
       next unless item.sell_in.negative?
       if item.name != 'Aged Brie'
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'
           if item.quality.positive?
-            if item.name != 'Sulfuras, Hand of Ragnaros'
-              item.quality = item.quality - 1
-            end
+            item.quality = item.quality - 1 unless item.legendary?
           end
         else
           item.quality = item.quality - item.quality
