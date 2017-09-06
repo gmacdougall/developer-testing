@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 desc 'Run the flog metrics tool on the GildedRose class'
 task :flog do
   system 'flog -agme lib/gilded_rose.rb | grep -v lib/gilded_rose | tee /dev/tty | pbcopy'
