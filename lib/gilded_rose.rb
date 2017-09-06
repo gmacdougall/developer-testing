@@ -10,41 +10,41 @@ class GildedRose
   end
 
   def update_quality
-    for i in 0..(@items.size - 1)
-      if @items[i].name != 'Aged Brie' &&
-         @items[i].name != 'Backstage passes to a TAFKAL80ETC concert'
-        if @items[i].quality.positive?
-          if @items[i].name != 'Sulfuras, Hand of Ragnaros'
-            @items[i].quality = @items[i].quality - 1
+    @items.each do |item|
+      if item.name != 'Aged Brie' &&
+         item.name != 'Backstage passes to a TAFKAL80ETC concert'
+        if item.quality.positive?
+          if item.name != 'Sulfuras, Hand of Ragnaros'
+            item.quality = item.quality - 1
           end
         end
-      elsif @items[i].quality < 50
-        @items[i].quality = @items[i].quality + 1
-        if @items[i].name == 'Backstage passes to a TAFKAL80ETC concert'
-          if @items[i].sell_in < 11 && @items[i].quality < 50
-            @items[i].quality = @items[i].quality + 1
+      elsif item.quality < 50
+        item.quality = item.quality + 1
+        if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+          if item.sell_in < 11 && item.quality < 50
+            item.quality = item.quality + 1
           end
-          if @items[i].sell_in < 6 && @items[i].quality < 50
-            @items[i].quality = @items[i].quality + 1
+          if item.sell_in < 6 && item.quality < 50
+            item.quality = item.quality + 1
           end
         end
       end
-      if @items[i].name != 'Sulfuras, Hand of Ragnaros'
-        @items[i].sell_in = @items[i].sell_in - 1
+      if item.name != 'Sulfuras, Hand of Ragnaros'
+        item.sell_in = item.sell_in - 1
       end
-      next unless @items[i].sell_in.negative?
-      if @items[i].name != 'Aged Brie'
-        if @items[i].name != 'Backstage passes to a TAFKAL80ETC concert'
-          if @items[i].quality > 0
-            if @items[i].name != 'Sulfuras, Hand of Ragnaros'
-              @items[i].quality = @items[i].quality - 1
+      next unless item.sell_in.negative?
+      if item.name != 'Aged Brie'
+        if item.name != 'Backstage passes to a TAFKAL80ETC concert'
+          if item.quality > 0
+            if item.name != 'Sulfuras, Hand of Ragnaros'
+              item.quality = item.quality - 1
             end
           end
         else
-          @items[i].quality = @items[i].quality - @items[i].quality
+          item.quality = item.quality - item.quality
         end
-      elsif @items[i].quality < 50
-        @items[i].quality = @items[i].quality + 1
+      elsif item.quality < 50
+        item.quality = item.quality + 1
       end
     end
   end
