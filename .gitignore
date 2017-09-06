@@ -1,2 +1,4 @@
+.approvals
+spec/fixtures/approvals/gildedrose/knows_how_to_update_quality_for_items.received.txt
 .bundle
 /vendor
