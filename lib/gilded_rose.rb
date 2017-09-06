@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# Gilded Rose will define the quality for a large set of items based upon the
+# attributes of an item.
 class GildedRose
   attr_reader :items
   
