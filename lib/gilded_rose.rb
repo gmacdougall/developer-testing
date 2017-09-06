@@ -13,7 +13,7 @@ class GildedRose
     @items.each do |item|
       if !item.aged? && !item.backstage_pass?
         if item.quality.positive?
-          item.quality = item.quality - 1 unless item.legendary?
+          item.degrade_quality unless item.legendary?
         end
       elsif item.quality < 50
         item.quality = item.quality + 1

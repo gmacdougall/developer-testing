@@ -37,6 +37,14 @@ RSpec.describe GildedRoseItem do
     end
   end
 
+  describe '#degrade_quality' do
+    subject { item.degrade_quality }
+
+    it 'reduces the quality by 1' do
+      expect { subject }.to change { item.quality }.from(1).to(0)
+    end
+  end
+
   describe '#legendary?' do
     subject { item.legendary? }
 

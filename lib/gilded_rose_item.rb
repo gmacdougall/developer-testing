@@ -11,6 +11,10 @@ class GildedRoseItem < Item
     name.start_with?('Backstage pass')
   end
 
+  def degrade_quality
+    @quality -= 1
+  end
+
   def legendary?
     name == 'Sulfuras, Hand of Ragnaros'
   end
