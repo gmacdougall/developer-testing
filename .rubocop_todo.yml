@@ -7,11 +7,6 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 1
-Lint/UselessAssignment:
-  Exclude:
-    - 'spec/gilded_rose_characterization_spec.rb'
-
-# Offense count: 1
 Metrics/AbcSize:
   Max: 56
 

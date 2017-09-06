@@ -17,7 +17,7 @@ end
 private
 
 def item_attributes
-  item_attributes = [
+  [
     ['Mail Armour', 10, 20],
     ['Mail Armour', 10, 1],
     ['+5 Dexterity Vest', 10, 20],
