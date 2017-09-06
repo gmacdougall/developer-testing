@@ -11,6 +11,32 @@ RSpec.describe GildedRoseItem do
   let(:sell_in) { 1 }
   let(:quality) { 1 }
 
+  describe '#aged?' do
+    subject { item.aged? }
+
+    context 'when the item is Aged Brie' do
+      let(:name) { 'Aged Brie' }
+      it { should be true }
+    end
+
+    context 'when the item is a standard item' do
+      it { should be false }
+    end
+  end
+
+  describe '#backstage_pass?' do
+    subject { item.backstage_pass? }
+
+    context 'when the item is Backstage passes to a TAFKAL80ETC concert' do
+      let(:name) { 'Backstage passes to a TAFKAL80ETC concert' }
+      it { should be true }
+    end
+
+    context 'when the item is a standard item' do
+      it { should be false }
+    end
+  end
+
   describe '#legendary?' do
     subject { item.legendary? }
 
