@@ -19,3 +19,5 @@ gem 'binding_of_caller'
 gem 'pry'
 gem 'pry-rescue'
 gem 'pry-stack_explorer'
+
+gem 'rubocop'
