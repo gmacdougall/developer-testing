@@ -41,7 +41,7 @@ class GildedRoseItem < Item
   def expire
     return unless expired?
     @quality = 0 if backstage_pass?
-    @quality += 1 if aged? && quality < QUALITY_THRESHOLD
+    @quality += 1 if aged? && can_improve?
     @quality -= 1 if can_degrade?
   end
 
