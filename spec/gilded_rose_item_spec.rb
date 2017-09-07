@@ -37,11 +37,42 @@ RSpec.describe GildedRoseItem do
     end
   end
 
+  describe '#can_degrade?' do
+    subject { item.can_degrade? }
+
+    context 'when the item is legendary' do
+      let(:name) { 'Sulfuras, Hand of Ragnaros' }
+      it { should be false }
+    end
+
+    context 'when the item is aged' do
+      let(:name) { 'Aged Brie' }
+      it { should be false }
+    end
+
+    context 'when the item is a backstage pass' do
+      let(:name) { 'Backstage passes to a TAFKAL80ETC concert' }
+      it { should be false }
+    end
+
+    context 'when the item is regular' do
+      it { should be true }
+    end
+  end
+
   describe '#degrade_quality' do
     subject { item.degrade_quality }
 
     it 'reduces the quality by 1' do
       expect { subject }.to change { item.quality }.from(1).to(0)
+    end
+
+    context 'when the item does not degrade' do
+      let(:name) { 'Sulfuras, Hand of Ragnaros' }
+
+      it 'does not reduce the quality' do
+        expect { subject }.to_not change { item.quality }
+      end
     end
   end
 

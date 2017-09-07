@@ -11,8 +11,12 @@ class GildedRoseItem < Item
     name.start_with?('Backstage pass')
   end
 
+  def can_degrade?
+    quality.positive? && !legendary? && !aged? && !backstage_pass?
+  end
+
   def degrade_quality
-    @quality -= 1
+    @quality -= 1 if can_degrade?
   end
 
   def legendary?
