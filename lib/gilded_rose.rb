@@ -14,19 +14,7 @@ class GildedRose
       item.degrade_quality
       item.improve_quality
       item.reduce_sell_in
-
-      next unless item.sell_in.negative?
-      if !item.aged?
-        if !item.backstage_pass?
-          if item.quality.positive?
-            item.quality = item.quality - 1 unless item.legendary?
-          end
-        else
-          item.quality = item.quality - item.quality
-        end
-      elsif item.quality < 50
-        item.quality = item.quality + 1
-      end
+      item.expire
     end
   end
 end

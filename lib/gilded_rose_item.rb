@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative './item'
+
 # GildedRoseItem applise additional methods and modifiers in order to store
 # methods which assist in interacting with Item
 class GildedRoseItem < Item
@@ -25,10 +27,21 @@ class GildedRoseItem < Item
     @quality -= 1 if can_degrade?
   end
 
+  def expired?
+    sell_in.negative?
+  end
+
+  def expire
+    return unless expired?
+    @quality = 0 if backstage_pass?
+    @quality += 1 if aged? && quality < QUALITY_THRESHOLD
+    @quality -= 1 if can_degrade?
+  end
+
   def improve_quality
     return unless can_improve?
     @quality += improvement_level
-    @quality = 50 if quality > 50
+    @quality = QUALITY_THRESHOLD if quality > QUALITY_THRESHOLD
   end
 
   def legendary?

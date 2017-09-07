@@ -104,6 +104,57 @@ RSpec.describe GildedRoseItem do
     end
   end
 
+  describe 'expire' do
+    subject { item.expire }
+    let(:sell_in) { -1 }
+
+    context 'when the item is a backstage pass' do
+      let(:name) { 'Backstage passes to a TAFKAL80ETC concert' }
+
+      context 'when the sell in is negative' do
+        it 'reduces quality to zero' do
+          expect { subject }.to change { item.quality }.to(0)
+        end
+      end
+
+      context 'when the sell in is not negative' do
+        let(:sell_in) { 0 }
+        it { expect { subject }.to_not change { item.quality } }
+      end
+    end
+
+    context 'when the item is aged' do
+      let(:name) { 'Aged Brie' }
+
+      context 'when the quality is less than 50' do
+        it { expect { subject }.to change { item.quality }.by(1) }
+      end
+
+      context 'when the quality is 50' do
+        let(:quality) { 50 }
+        it { expect { subject }.to_not change { item.quality } }
+      end
+    end
+
+    context 'when the item is regular' do
+      it { expect { subject }.to change { item.quality }.by(-1) }
+    end
+  end
+
+  describe '#expired?' do
+    subject { item.expired? }
+
+    context 'when the sell_in is negative' do
+      let(:sell_in) { -1 }
+      it { should be true }
+    end
+
+    context 'when the sell_in is 0 or positive' do
+      let(:sell_in) { 0 }
+      it { should be false }
+    end
+  end
+
   describe '#improve_quality' do
     subject { item.improve_quality }
     let(:name) { 'Aged Brie' }
