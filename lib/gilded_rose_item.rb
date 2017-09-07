@@ -11,6 +11,13 @@ class GildedRoseItem < Item
     name.start_with?('Aged')
   end
 
+  def age
+    degrade_quality
+    improve_quality
+    reduce_sell_in
+    expire
+  end
+
   def backstage_pass?
     name.start_with?('Backstage pass')
   end

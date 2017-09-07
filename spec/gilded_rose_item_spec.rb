@@ -24,6 +24,10 @@ RSpec.describe GildedRoseItem do
     end
   end
 
+  describe '#age' do
+    pending
+  end
+
   describe '#backstage_pass?' do
     subject { item.backstage_pass? }
 

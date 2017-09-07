@@ -10,11 +10,6 @@ class GildedRose
   end
 
   def update_quality
-    @items.each do |item|
-      item.degrade_quality
-      item.improve_quality
-      item.reduce_sell_in
-      item.expire
-    end
+    @items.each(&:age)
   end
 end
