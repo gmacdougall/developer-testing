@@ -25,7 +25,29 @@ class GildedRoseItem < Item
     @quality -= 1 if can_degrade?
   end
 
+  def improve_quality
+    return unless can_improve?
+    @quality += improvement_level
+    @quality = 50 if quality > 50
+  end
+
   def legendary?
     name == 'Sulfuras, Hand of Ragnaros'
+  end
+
+  def reduce_sell_in
+    @sell_in -= 1 unless legendary?
+  end
+
+  private
+
+  def improvement_level
+    if backstage_pass? && sell_in < 6
+      3
+    elsif backstage_pass? && sell_in < 11
+      2
+    else
+      1
+    end
   end
 end

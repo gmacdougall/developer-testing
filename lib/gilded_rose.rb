@@ -12,19 +12,9 @@ class GildedRose
   def update_quality
     @items.each do |item|
       item.degrade_quality
+      item.improve_quality
+      item.reduce_sell_in
 
-      if item.can_improve?
-        item.quality = item.quality + 1
-        if item.backstage_pass?
-          if item.sell_in < 11 && item.quality < 50
-            item.quality = item.quality + 1
-          end
-          if item.sell_in < 6 && item.quality < 50
-            item.quality = item.quality + 1
-          end
-        end
-      end
-      item.sell_in = item.sell_in - 1 unless item.legendary?
       next unless item.sell_in.negative?
       if !item.aged?
         if !item.backstage_pass?
