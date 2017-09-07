@@ -13,7 +13,7 @@ class GildedRose
     @items.each do |item|
       item.degrade_quality
 
-      if (item.aged? || item.backstage_pass?) && item.quality < 50
+      if item.can_improve?
         item.quality = item.quality + 1
         if item.backstage_pass?
           if item.sell_in < 11 && item.quality < 50

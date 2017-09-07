@@ -60,6 +60,34 @@ RSpec.describe GildedRoseItem do
     end
   end
 
+  describe '#can_improve?' do
+    subject { item.can_improve? }
+
+    context 'when the item is aged' do
+      let(:name) { 'Aged Brie' }
+      it { should be true }
+
+      context 'when the quality is 50 or greater' do
+        let(:quality) { 50 }
+        it { should be false }
+      end
+    end
+
+    context 'when the item is a backstage pass' do
+      let(:name) { 'Backstage passes to a TAFKAL80ETC concert' }
+      it { should be true }
+
+      context 'when the quality is 50 or greater' do
+        let(:quality) { 50 }
+        it { should be false }
+      end
+    end
+
+    context 'when the item is regular' do
+      it { should be false }
+    end
+  end
+
   describe '#degrade_quality' do
     subject { item.degrade_quality }
 

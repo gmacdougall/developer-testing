@@ -3,6 +3,8 @@
 # GildedRoseItem applise additional methods and modifiers in order to store
 # methods which assist in interacting with Item
 class GildedRoseItem < Item
+  QUALITY_THRESHOLD = 50
+
   def aged?
     name.start_with?('Aged')
   end
@@ -13,6 +15,10 @@ class GildedRoseItem < Item
 
   def can_degrade?
     quality.positive? && !legendary? && !aged? && !backstage_pass?
+  end
+
+  def can_improve?
+    quality < QUALITY_THRESHOLD && (aged? || backstage_pass?)
   end
 
   def degrade_quality
